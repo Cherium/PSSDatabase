@@ -14,3 +14,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   * The `event` table does not have a foreign key to the `fundraiser` table.
   * `performance` table links to `event` via event_name only.
   * `budget` has many sections which are added as int fields. The sum of all fields should equal the amount of the corresponding row in `financial_transaction` when querying with transaction_no.
+- Basic front-end elements.
