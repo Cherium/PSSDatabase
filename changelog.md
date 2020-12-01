@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.0] - 2020-11-30 
+### Added
+- Added events and partial members to database.
+- Added basic framework for websites.
+
 ## [0.0.1] - 2020-11-29
 ### Added
 - This changelog to keep track of changes as the project developes. 
