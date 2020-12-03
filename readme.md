@@ -16,7 +16,6 @@ Move all contents of the folder `Website` into `<Disk>:\AppServ\www`, where `<Di
 ### Database configuration
 Under `Login` set `Login Name` to `newuser`, `Authentication Type` to `Standard`, `Limit to Hosts Matching` to `localhost`, and `Password` to `password`. Under `Account Limits`, set all queries and connections to `0`. Under `Administrative Roles`, select all the options. `Apply` changes.
 
-Next, upload the `database.sql` dump file into MySQL. Select `Navigation > Administration > Data Import/Restore` and in the tab `Import from Disk` enter the path of the file under `Import from Self-Contained file`. In the `Import Progress` tab, select `Start Import`. 
+Next, upload the `databaseschema.sql` dump file into MySQL. Select `Navigation > Administration > Data Import/Restore` and in the tab `Import from Disk` enter the path of the file under `Import from Self-Contained file`. Create a new Default Target Schema named `pss`. Select `Dump Structure and Data` from the dropdown menu in `Select Database Objects to Import`. In the `Import Progress` tab, select `Start Import`. 
 
 ### Run
-Open a web browser and navigate to the address `http://localhost/index.php`.
