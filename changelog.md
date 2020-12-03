@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - A main page and four subpages, and navigation between subpages and main page. 
 - VSCode and Visual Studio settings to .gitignore. 
+- Added API for connecting to database and viewing events. 
 
 
 ## [0.1.0] - 2020-11-30 
