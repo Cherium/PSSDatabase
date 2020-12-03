@@ -6,6 +6,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.0] - 2020-12-02
+### Added
+- A main page and four subpages, and navigation between subpages and main page. 
+- VSCode and Visual Studio settings to .gitignore. 
+
+
 ## [0.1.0] - 2020-11-30 
 ### Added
 - Added events and partial members to database.
@@ -20,3 +26,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   * `performance` table links to `event` via event_name only.
   * `budget` has many sections which are added as int fields. The sum of all fields should equal the amount of the corresponding row in `financial_transaction` when querying with transaction_no.
 - Basic front-end elements.
+- A .gitignore for Database. 
