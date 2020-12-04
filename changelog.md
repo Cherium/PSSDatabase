@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.3.0] - 2020-12-03
+### Added
+- Viewing, searching, creating, updating, and deleting events from the database through api. Updates against a non-existent item in the database will result in update success message, although the item won't be created. This is the same with deletions. 
+
 ## [0.2.0] - 2020-12-02
 ### Added
 - A main page and four subpages, and navigation between subpages and main page. 
