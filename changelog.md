@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [0.3.0] - 2020-12-03
 ### Added
 - Viewing, searching, creating, updating, and deleting events from the database through api. Updates against a non-existent item in the database will result in update success message, although the item won't be created. This is the same with deletions. [How to Create A Simple REST API in PHP - Step By Step Guide!](https://codeofaninja.com/2017/02/create-simple-rest-api-in-php.html).
-- Front end and back end intergration with events table in database. [REST API Authentication Example in PHP – JWT Tutorial ](https://codeofaninja.com/2018/09/rest-api-authentication-example-php-jwt-tutorial.html).
+- Front end and back end intergration with events table in database. [AJAX CRUD Tutorial Using JavaScript, JSON and PHP – Step by Step Guide! ](https://codeofaninja.com/2015/06/php-crud-with-ajax-and-oop.html).
 
 ## [0.2.0] - 2020-12-02
 ### Added
