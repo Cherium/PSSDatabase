@@ -1,4 +1,4 @@
-table, th, tr
+table, th, tr, td
 {
     padding: 10px;
     border: 1px solid black;
@@ -33,7 +33,16 @@ table
     width: 60%;
 }
 
-button
+button.home_btn 
+{
+    margin-left: 2%;
+    margin-right: 2%;
+    font-size: 2em;
+    padding: 1%;
+    width: 96%;
+}
+
+button.navi_btn 
 {
     margin-left: 2%;
     margin-right: 2%;

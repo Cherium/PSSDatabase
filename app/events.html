@@ -1,24 +1,45 @@
 ﻿<!DOCTYPE html>
 
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en">
 <head>
     <meta charset="utf-8" />
     <title>Events</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="css/style.css" />
 
 </head>
 <body>
-    <h1>Events</h1>
-    <button onclick="move_to_home()">Home</button>
-    <table>
+    <!--<h1>Events</h1>-->
+    <button onclick="move_to_home()" id="home_btn" class="home_btn">Home</button>
+
+
+
+    <!--<table>
         <tr id="bold_items">
             <th>Name</th>
             <th>Location</th>
             <th>Date</th>
             <th>Corresponding Fundraiser</th>
         </tr>
-    </table>
+    </table>-->
+
+    <div id="app"></div>
+
+    <!-- jQuery library -->
+    <script src="js/jquery-3.5.1.min.js"></script>
+
+    <!-- bootstrap JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    <!-- bootbox for confirm pop up -->
+    <script src="js/bootbox.min.js"></script>
 
     <script src="js/site.js"></script>
+
+    <script src="event/read-events.js"></script>
+    <script src="event/create-event.js"></script>
+    <script src="event/read-one-event.js"></script>
+    <script src="event/update-event.js"></script>
+    <script src="event/delete-event.js"></script>
 </body>
 </html>
