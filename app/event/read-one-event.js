@@ -7,9 +7,6 @@ $(document).ready(function () {
         var name = $(this).attr('data-Name');
         var date = $(this).attr('data-Date');
 
-        console.log(name);
-        console.log(date);
-
         // read event record based on given ID
         $.getJSON("http://localhost/api/event/read_one.php?Name=\"" + name + "\"&Date=\"" + date + "\"", function (data) {
             // start html
