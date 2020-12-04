@@ -18,6 +18,16 @@ $(document).ready(function () {
 
 });
 
+// change page title
+function changePageTitle(page_title) {
+
+    // change page title
+    $('#page-title').text(page_title);
+
+    // change title tag
+    document.title = page_title;
+}
+
 function move_to_home() {
     window.location = "index.html";
 }

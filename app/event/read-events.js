@@ -47,7 +47,7 @@ function showEvents() {
             <!-- 'action' buttons -->
             <td>
                 <!-- read event button -->
-                <button class='btn btn-primary read-one-event-button' data-Name='` + val.Name + `' data-Date='`+ val.Date+`'>
+                <button class='read-one-event-button' data-Name='` + val.Name + `' data-Date='`+ val.Date+`'>
                     <span class='glyphicon glyphicon-eye-open'></span> Read
                 </button>
  
