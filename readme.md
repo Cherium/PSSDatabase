@@ -19,7 +19,7 @@ Under `Login` set `Login Name` to `newuser`, `Authentication Type` to `Standard`
 Next, upload the `databaseschema.sql` dump file into MySQL. Select `Navigation > Administration > Data Import/Restore` and in the tab `Import from Disk` enter the path of the file under `Import from Self-Contained file`. Create a new Default Target Schema named `pss`. Select `Dump Structure and Data` from the dropdown menu in `Select Database Objects to Import`. In the `Import Progress` tab, select `Start Import`. 
 
 ### Run
-Navigate to `localhost/app/index.html` to run the application. 
+Navigate to `localhost/app/index.html` to run the application. Or, type in the path to `app/index.html` in your browser if `Setup` and `Database configuration` were carried out properly. For api testing, use `localhost/api/<function>`.
 
 ## References
 REST API in PHP: [How to Create A Simple REST API in PHP - Step By Step Guide!](https://codeofaninja.com/2017/02/create-simple-rest-api-in-php.html)
