@@ -225,11 +225,13 @@ class Member{
     function search($keywords){
       
         // select all query
+        // Searches members by program
+        // Ideally, search by event that they joined in
         $query = "SELECT *
                 FROM
                     " . $this->table_name . " m
                 WHERE
-                    m.Program LIKE ? OR m.Year LIKE ? 
+                    m.Program LIKE ? 
                 ORDER BY
                     m.Lname DESC";
       
@@ -242,7 +244,7 @@ class Member{
       
         // bind
         $stmt->bindParam(1, $keywords);
-        $stmt->bindParam(2, $keywords);
+        //$stmt->bindParam(2, $keywords);
       
       
       

@@ -25,7 +25,7 @@ if($num>0){
   
         $member_single=array(
             "UCID" => $UCID,
-            "Int_stat" => Int_stat,
+            "Int_stat" => $Int_stat,
             "Fname" => $Fname,
             "Lname" => $Lname,
             "Email" => $Email,
