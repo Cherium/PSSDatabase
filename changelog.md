@@ -8,7 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.4.0] - 2020-12-05
 ### Added
-- Member API: View all members, creating a member (without subscription/transaction, these are set default values), view details of specific member, updating a member 
+- Member API: View all members, creating a member (without subscription/transaction, these are set default values), view details of specific member, updating a member, deletion of a member (doesn't check if member exists)
 
 ### Fixed
 - Issue where member api is unable to update true/false values to TINYINT. Change values to b'1' and b'0' instead. 
