@@ -8,7 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.4.0] - 2020-12-05
 ### Added
-- Member API: View all members, creating a member (without subscription/transaction, these are set default values), view details of specific member
+- Member API: View all members, creating a member (without subscription/transaction, these are set default values), view details of specific member, updating a member (can't update if subscription status is 0, but able to if it's NULL?)
 
 ## [0.3.0] - 2020-12-03
 ### Added

@@ -141,12 +141,12 @@ class Member{
     }
       
     function update(){
-      
+        
         // update query
         $query = "UPDATE
                     " . $this->table_name . "
                 SET
-                    Int_stat=:Int_stat, Fname=:Fname, Lname=:Lname, Email=:Email, Year_of_study=:Year_of_study, Program=:Program, Subscription_status=:Subscription_status, Transaction_no=:Transaction_no
+                    Int_stat=:Int_stat, Email=:Email, Year_of_study=:Year_of_study, Program=:Program, Subscription_status=:Subscription_status, Transaction_no=:Transaction_no
                 WHERE
                     UCID=:UCID";
       
@@ -156,19 +156,26 @@ class Member{
         // sanitize
         $this->UCID=htmlspecialchars(strip_tags($this->UCID));
         $this->Int_stat=htmlspecialchars(strip_tags($this->Int_stat));
-        $this->Fname=htmlspecialchars(strip_tags($this->Fname));
-        $this->Lname=htmlspecialchars(strip_tags($this->Lname));
+        $this->Int_stat= $this->Int_stat ? true : false;
+        //$this->Fname=htmlspecialchars(strip_tags($this->Fname));
+        //$this->Lname=htmlspecialchars(strip_tags($this->Lname));
         $this->Email=htmlspecialchars(strip_tags($this->Email));
         $this->Year_of_study=htmlspecialchars(strip_tags($this->Year_of_study));
         $this->Program=htmlspecialchars(strip_tags($this->Program));
+        echo $this->Subscription_status;
         $this->Subscription_status=htmlspecialchars(strip_tags($this->Subscription_status));
+        $this->Subscription_status= $this->Subscription_status ? true : false;
         $this->Transaction_no=htmlspecialchars(strip_tags($this->Transaction_no));
-      
+        $this->Transaction_no= $this->Transaction_no ? $this->Transaction_no : NULL;
+        
+        
+        
+
         // bind new values
         $stmt->bindParam(":UCID", $this->UCID);
         $stmt->bindParam(":Int_stat", $this->Int_stat);
-        $stmt->bindParam(":Fname", $this->Fname);
-        $stmt->bindParam(":Lname", $this->Lname);
+        //$stmt->bindParam(":Fname", $this->Fname);
+        //$stmt->bindParam(":Lname", $this->Lname);
         $stmt->bindParam(":Email", $this->Email);
         $stmt->bindParam(":Year_of_study", $this->Year_of_study);
         $stmt->bindParam(":Program", $this->Program);
