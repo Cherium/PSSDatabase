@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.5.0] - 2020-12-06
+### Added
+- Meeting API: Creating a meeting
+
 ## [0.4.0] - 2020-12-05
 ### Added
 - Member API: View all members, creating a member (without subscription/transaction, these are set default values), view details of specific member, updating a member, deletion of a member (doesn't check if member exists), searching a member by program

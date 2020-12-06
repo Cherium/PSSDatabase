@@ -35,22 +35,22 @@ class Meeting{
         $query = "INSERT INTO
                     " . $this->table_name . "
                 SET
-                    Name=:Name, Date=:Date, Location=:Location, FundraiserName=:FundraiserName";
+                    Date=:Date, Summary=:Summary, Department=:Department";
   
         // prepare query
         $stmt = $this->conn->prepare($query);
   
         // sanitize
-        $this->Name=htmlspecialchars(strip_tags($this->Name));
         $this->Date=htmlspecialchars(strip_tags($this->Date));
-        $this->Location=htmlspecialchars(strip_tags($this->Location));
-        $this->FundraiserName=htmlspecialchars(strip_tags($this->FundraiserName));
+        $this->Summary=htmlspecialchars(strip_tags($this->Summary));
+        $this->Department=htmlspecialchars(strip_tags($this->Department));
+
   
         // bind values
-        $stmt->bindParam(":Name", $this->Name);
         $stmt->bindParam(":Date", $this->Date);
-        $stmt->bindParam(":Location", $this->Location);
-        $stmt->bindParam(":FundraiserName", $this->FundraiserName);
+        $stmt->bindParam(":Summary", $this->Summary);
+        $stmt->bindParam(":Department", $this->Department);
+
 
   
         // execute query
