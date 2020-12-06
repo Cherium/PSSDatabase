@@ -33,6 +33,7 @@ table
     align-items: center;
     margin: auto;
     width: 80%;
+    /* height: 100%; */
 }
 
 button.home_btn 
