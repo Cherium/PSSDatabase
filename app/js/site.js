@@ -48,6 +48,10 @@ function move_to_financials() {
     window.location = "financials.html";
 }
 
+function move_to_monthlyemails() {
+    window.location = "monthlyemail.html";
+}
+
 // function to make form values to json format
 $.fn.serializeObject = function () {
     var o = {};
