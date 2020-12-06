@@ -70,9 +70,9 @@ class Meeting{
         // query to read single record
         $query = "SELECT *                   
                 FROM
-                    " . $this->table_name . " e
+                    " . $this->table_name . " m
                 WHERE
-                    e.Name = " . $this->Name . " AND e.Date = " . $this->Date . " 
+                    m.Date = " . $this->Date . "  
                 LIMIT
                     0,1";
   
@@ -81,8 +81,8 @@ class Meeting{
 
 
         // bind id of product to be updated
-        $stmt->bindParam(1, $this->Name);
-        $stmt->bindParam(2, $this->Date);
+        $stmt->bindParam(1, $this->Date);
+
 
      
 
@@ -94,10 +94,9 @@ class Meeting{
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
   
         // set values to object properties
-        $this->Name = $row['Name'];
         $this->Date = $row['Date'];
-        $this->Location = $row['Location'];
-        $this->FundraiserName = $row['FundraiserName'];
+        $this->Summary = $row['Summary'];
+        $this->Department = $row['Department'];
 
     }
 
