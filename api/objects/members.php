@@ -55,7 +55,7 @@ class Member{
         // sanitize
         $this->UCID=(int)htmlspecialchars(strip_tags($this->UCID));
 
-        $this->Int_stat=$this->Int_stat ? true : false; // https://stackoverflow.com/questions/12660756/to-deal-with-boolean-values-in-php-mysql
+        $this->Int_stat=$this->Int_stat ? b'1' : b'0'; // https://stackoverflow.com/questions/12660756/to-deal-with-boolean-values-in-php-mysql
 
         //$this->Int_stat=(int)htmlspecialchars(strip_tags($this->Int_stat));
         $this->Fname=htmlspecialchars(strip_tags($this->Fname));
