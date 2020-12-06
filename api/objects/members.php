@@ -156,7 +156,7 @@ class Member{
         // sanitize
         $this->UCID=htmlspecialchars(strip_tags($this->UCID));
         $this->Int_stat=htmlspecialchars(strip_tags($this->Int_stat));
-        $this->Int_stat= $this->Int_stat ? true : false;
+        $this->Int_stat= $this->Int_stat ? b'1' : b'0'; // https://stackoverflow.com/questions/7655423/how-can-i-update-the-boolean-values-in-mysql
         //$this->Fname=htmlspecialchars(strip_tags($this->Fname));
         //$this->Lname=htmlspecialchars(strip_tags($this->Lname));
         $this->Email=htmlspecialchars(strip_tags($this->Email));
@@ -164,7 +164,7 @@ class Member{
         $this->Program=htmlspecialchars(strip_tags($this->Program));
         echo $this->Subscription_status;
         $this->Subscription_status=htmlspecialchars(strip_tags($this->Subscription_status));
-        $this->Subscription_status= $this->Subscription_status ? true : false;
+        $this->Subscription_status= $this->Subscription_status ? b'1' : b'0';
         $this->Transaction_no=htmlspecialchars(strip_tags($this->Transaction_no));
         $this->Transaction_no= $this->Transaction_no ? $this->Transaction_no : NULL;
         
