@@ -138,21 +138,19 @@ class Meeting{
   
         // delete query
         $query = "DELETE FROM " . $this->table_name . " 
-                WHERE Name = ? AND Date = ?" ;
+                WHERE Date = ?" ;
   
         // prepare query
         $stmt = $this->conn->prepare($query);
   
         // sanitize
-        $this->Name=htmlspecialchars(strip_tags($this->Name));
         $this->Date=htmlspecialchars(strip_tags($this->Date));
   
         // bind id of record to delete
-        $stmt->bindParam(1, $this->Name);
-        $stmt->bindParam(2, $this->Date);
+        $stmt->bindParam(1, $this->Date);
 
-        echo $this->Name;
-        echo $this->Date;
+        //echo $this->Name;
+        //echo $this->Date;
   
         // execute query
         if($stmt->execute()){
