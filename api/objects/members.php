@@ -4,7 +4,7 @@ class Member{
 	private $table_name = "member";
 
 	public $UCID;
-	public $Internation_status;
+	public $Int_stat;
 	public $Fname;
     public $Lname;
     public $Email;
@@ -37,40 +37,52 @@ class Member{
     }
 
     function create(){
-  
+        
         // query to insert record
         // TODO: insert into joined_in table as well
         // maybe as a different php file
+        // Subscription and transaction status are going to be options in update instead of create
         $query = "INSERT INTO
                     " . $this->table_name . "
                 SET
-                    UCID=:UCID, Internation_status=:Internation_status, Fname=:Fname, Lname=:Lname, Email=:Email, Year_of_study=:Year_of_study, Program=:Program, Subscription_status=:Subscription_status,Transaction_no=:Transaction_no";
+                    UCID=:UCID, Int_stat=:Int_stat, Fname=:Fname, Lname=:Lname, Email=:Email, Year_of_study=:Year_of_study, Program=:Program";
       
+        echo "???";
         // prepare query
         $stmt = $this->conn->prepare($query);
+
       
         // sanitize
-        $this->UCID=htmlspecialchars(strip_tags($this->UCID));
-        $this->Internation_status=htmlspecialchars(strip_tags($this->Internation_status));
+        $this->UCID=(int)htmlspecialchars(strip_tags($this->UCID));
+
+        $this->Int_stat=$this->Int_stat ? true : false; // https://stackoverflow.com/questions/12660756/to-deal-with-boolean-values-in-php-mysql
+
+        //$this->Int_stat=(int)htmlspecialchars(strip_tags($this->Int_stat));
         $this->Fname=htmlspecialchars(strip_tags($this->Fname));
         $this->Lname=htmlspecialchars(strip_tags($this->Lname));
         $this->Email=htmlspecialchars(strip_tags($this->Email));
         $this->Year_of_study=htmlspecialchars(strip_tags($this->Year_of_study));
         $this->Program=htmlspecialchars(strip_tags($this->Program));
-        $this->Subscription_status=htmlspecialchars(strip_tags($this->Subscription_status));
-        $this->Transaction_no=htmlspecialchars(strip_tags($this->Transaction_no));
+
+        //$this->Subscription_status=$this->Subscription_status ? true : false;
+        //$this->Subscription_status=htmlspecialchars(strip_tags($this->Subscription_status));
+
+        //$thisTransaction_no=(int)htmlspecialchars(strip_tags($this->Transaction_no)) ? (int)htmlspecialchars(strip_tags($this->Transaction_no)) : NULL;
+        //$this->Transaction_no=htmlspecialchars(strip_tags($this->Transaction_no));
       
+        
+ 
         // bind values
         $stmt->bindParam(":UCID", $this->UCID);
-        $stmt->bindParam(":Internation_status", $this->Internation_status);
+        $stmt->bindParam(":Int_stat", $this->Int_stat);
         $stmt->bindParam(":Fname", $this->Fname);
         $stmt->bindParam(":Lname", $this->Lname);
         $stmt->bindParam(":Email", $this->Email);
         $stmt->bindParam(":Year_of_study", $this->Year_of_study);
         $stmt->bindParam(":Program", $this->Program);
-        $stmt->bindParam(":Subscription_status", $this->Subscription_status);
-        $stmt->bindParam(":Transaction_no", $this->Transaction_no);
-      
+        //$stmt->bindParam(":Subscription_status", $this->Subscription_status);
+        //$stmt->bindParam(":Transaction_no", $this->Transaction_no);
+  
       
         // execute query
         if($stmt->execute()){
@@ -79,18 +91,17 @@ class Member{
       
         return false;
       
-      }
+    }
       
-      // used when filling up the update member form
-      function readOne(){
+    // used to edit a member
+    function readOne(){
       
       
       
         // query to read single record
-        $query = "SELECT                    
+        $query = "SELECT *                   
                 FROM
-                    " . $this->table_name . " m JOIN joined_in j 
-                ON m.UCID = j.UCID
+                    " . $this->table_name . " m               
                 WHERE
                     m.UCID = " . $this->UCID . " 
                 LIMIT
@@ -115,7 +126,7 @@ class Member{
       
         // set values to object properties
         $this->UCID = $row['UCID'];
-        $this->Internation_status = $row['Internation_status'];
+        $this->Int_stat = $row['Int_stat'];
         $this->Fname = $row['Fname'];
         $this->Lname = $row['Lname'];
         $this->Email = $row['Email'];
@@ -123,19 +134,19 @@ class Member{
         $this->Program = $row['Program'];
         $this->Subscription_status = $row['Subscription_status'];
         $this->Transaction_no = $row['Transaction_no'];
-        $this->E_name = $row['E_name'];
-        $this->E_date = $row['E_date'];
+        //$this->E_name = $row['E_name'];
+        //$this->E_date = $row['E_date'];
       
       
-      }
+    }
       
-      function update(){
+    function update(){
       
         // update query
         $query = "UPDATE
                     " . $this->table_name . "
                 SET
-                    Internation_status=:Internation_status, Fname=:Fname, Lname=:Lname, Email=:Email, Year_of_study=:Year_of_study, Program=:Program, Subscription_status=:Subscription_status, Transaction_no=:Transaction_no
+                    Int_stat=:Int_stat, Fname=:Fname, Lname=:Lname, Email=:Email, Year_of_study=:Year_of_study, Program=:Program, Subscription_status=:Subscription_status, Transaction_no=:Transaction_no
                 WHERE
                     UCID=:UCID";
       
@@ -144,7 +155,7 @@ class Member{
       
         // sanitize
         $this->UCID=htmlspecialchars(strip_tags($this->UCID));
-        $this->Internation_status=htmlspecialchars(strip_tags($this->Internation_status));
+        $this->Int_stat=htmlspecialchars(strip_tags($this->Int_stat));
         $this->Fname=htmlspecialchars(strip_tags($this->Fname));
         $this->Lname=htmlspecialchars(strip_tags($this->Lname));
         $this->Email=htmlspecialchars(strip_tags($this->Email));
@@ -155,7 +166,7 @@ class Member{
       
         // bind new values
         $stmt->bindParam(":UCID", $this->UCID);
-        $stmt->bindParam(":Internation_status", $this->Internation_status);
+        $stmt->bindParam(":Int_stat", $this->Int_stat);
         $stmt->bindParam(":Fname", $this->Fname);
         $stmt->bindParam(":Lname", $this->Lname);
         $stmt->bindParam(":Email", $this->Email);
@@ -172,9 +183,9 @@ class Member{
         }
       
         return false;
-      }
+    }
       
-      function delete(){
+    function delete(){
       
       
         // delete query
@@ -201,10 +212,10 @@ class Member{
         }
       
         return false;
-      }
+    }
       
-        // search products
-      function search($keywords){
+    // search products
+    function search($keywords){
       
         // select all query
         $query = "SELECT *
@@ -232,7 +243,7 @@ class Member{
         $stmt->execute();
       
         return $stmt;
-      }
+    }
 
    
 }

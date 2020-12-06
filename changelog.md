@@ -8,7 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.4.0] - 2020-12-05
 ### Added
-- Member API: View all members, creating a member (without subscription/transaction, these are set default values)
+- Member API: View all members, creating a member (without subscription/transaction, these are set default values), view details of specific member
 
 ## [0.3.0] - 2020-12-03
 ### Added

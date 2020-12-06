@@ -25,14 +25,14 @@ if($num>0){
   
         $member_single=array(
             "UCID" => $UCID,
-            "Internation_status" => $Internation_status,
+            "Int_stat" => Int_stat,
             "Fname" => $Fname,
             "Lname" => $Lname,
             "Email" => $Email,
             "Year_of_study" => $Year_of_study,
-            "Program" => $Program,
-            "Subscription_status" => $Subscription_status,
-            "Transaction_no" => $Transaction_no
+            "Program" => $Program
+            //"Subscription_status" => $Subscription_status,
+            //"Transaction_no" => $Transaction_no
         );
   
         array_push($members_arr["records"], $member_single);
