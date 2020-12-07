@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Outgoing API: View all outgoing transactions, creating and deleting outgoing transactions, updating type of payment for an existing outgoing transaction
 - Budget API: View all budget transactions, creating and deleting budget, updating budget information
 - Organization API: View all, create, delete, update
+- Contribution API: View all, create and delete
 
 ### Changed
 - Path and functions in financial_transaction.php
