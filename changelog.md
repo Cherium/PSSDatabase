@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [0.6.0] - 2020-12-07
 ### Added
 - Incoming API: View all incoming transactions, creating and deleting incoming transactions, updating package type of an existing incoming
+- Outgoing API: View all outgoing transactions, creating and deleting outgoing transactions, updating type of payment for an existing outgoing transaction
 
 ### Changed
 - Path and functions in financial_transaction.php
