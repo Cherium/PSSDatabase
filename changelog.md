@@ -13,6 +13,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Budget API: View all budget transactions, creating and deleting budget, updating budget information
 - Organization API: View all, create, delete, update
 - Contribution API: View all, create and delete
+- Fundraiser API: View all, create and delete
+- Donate API: View all, create and delete
 
 ### Changed
 - Path and functions in financial_transaction.php
