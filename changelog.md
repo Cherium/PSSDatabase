@@ -18,6 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Department API: View all, create and update
 - Event host API: View all, create and delete
 - Joined in API: View all, create and delete
+- Membership payment in API: View all, create and delete
 
 ### Changed
 - Path and functions in financial_transaction.php
