@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.6.0] - 2020-12-07
+### Changed
+- Path and functions in financial_transaction.php
+
 ## [0.5.0] - 2020-12-06
 ### Added
 - Meeting API: Creating a meeting, viewing a specific meeting, updating a meeting's info, deleting a meeting, search through meetings 

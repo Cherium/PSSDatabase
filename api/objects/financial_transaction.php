@@ -1,9 +1,9 @@
 <?php
-class Event{
+class financial_transaction{
 	private $conn;
-    private $table_name = "Financial_Transaction";
+    private $table_name = "financial_transaction";
     
-    public $No;
+    public $Transaction_no;
     public $Date;
     public $Amount;
 	
@@ -35,18 +35,18 @@ class Event{
         $query = "INSERT INTO
                     " . $this->table_name . "
                 SET
-                    Transaction_no=:No, Date=:Date, Amount=:Amount";
+                    Transaction_no=:Transaction_no, Date=:Date, Amount=:Amount";
   
         // prepare query
         $stmt = $this->conn->prepare($query);
   
         // sanitize
-        $this->No=htmlspecialchars(strip_tags($this->No));
+        $this->Transaction_no=htmlspecialchars(strip_tags($this->Transaction_no));
         $this->Date=htmlspecialchars(strip_tags($this->Date));
         $this->Amount=htmlspecialchars(strip_tags($this->Amount));
         
         // bind values
-        $stmt->bindParam(":Transaction_no", $this->No);
+        $stmt->bindParam(":Transaction_no", $this->Transaction_no);
         $stmt->bindParam(":Date", $this->Date);
         $stmt->bindParam(":Amount", $this->Amount);
         
@@ -71,7 +71,7 @@ class Event{
                 FROM
                     " . $this->table_name . " t
                 WHERE
-                    t.Transaction_no = " . $this->No . " AND t.Date = " . $this->Date . "
+                    t.Transaction_no = " . $this->Transaction_no . " AND t.Date = " . $this->Date . "
                 LIMIT
                     0,1";
   
@@ -80,7 +80,7 @@ class Event{
 
 
         // bind id of product to be updated
-        $stmt->bindParam(1, $this->No);
+        $stmt->bindParam(1, $this->Transaction_no);
         $stmt->bindParam(2, $this->Date);
 
      
@@ -93,7 +93,7 @@ class Event{
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
   
         // set values to object properties
-        $this->No = $row['Transaction_no'];
+        $this->Transaction_no = $row['Transaction_no'];
         $this->Date = $row['Date'];
         $this->Amount = $row['Amount'];
         
@@ -106,20 +106,20 @@ class Event{
         $query = "UPDATE
                     " . $this->table_name . "
                 SET
-                     Amount=:Amount
+                    Amount=:Amount
                 WHERE
-                    Transaction_no=:No ";
+                    Transaction_no=:Transaction_no";
   
         // prepare query statement
         $stmt = $this->conn->prepare($query);
   
         // sanitize
-        $this->No = $row['Transaction_no'];
-        $this->Amount = $row['Amount'];
 
-  
+        $this->Transaction_no=htmlspecialchars(strip_tags($this->Transaction_no));
+        $this->Amount=htmlspecialchars(strip_tags($this->Amount));        
+        
         // bind new values
-        $stmt->bindParam(':Transaction_no', $this->No);
+        $stmt->bindParam(':Transaction_no', $this->Transaction_no);
         $stmt->bindParam(':Amount', $this->Amount);
         
 
@@ -138,21 +138,21 @@ class Event{
         // delete query
         $query = "DELETE FROM " . $this->table_name . " 
                  WHERE
-                    Transaction_no=:No ";
+                    Transaction_no=:Transaction_no ";
   
         // prepare query
         $stmt = $this->conn->prepare($query);
   
         // sanitize
-        $this->No=htmlspecialchars(strip_tags($this->No));
+        $this->Transaction_no=htmlspecialchars(strip_tags($this->Transaction_no));
        
   
         // bind id of record to delete
-        $stmt->bindParam(":Transaction_no", $this->No);
+        $stmt->bindParam(":Transaction_no", $this->Transaction_no);
         
 
        
-        echo $this->Date;
+
   
         // execute query
         if($stmt->execute()){

@@ -8,7 +8,7 @@
   
     // include database and object file
     include_once '../config/database.php';
-    include_once '../objects/events.php';
+    include_once '../objects/financial_transaction.php';
   
     // get database connection
     $database = new Database();
@@ -21,11 +21,12 @@
     $data = json_decode(file_get_contents("php://input"));
   
     // set product id to be deleted
-    $financial_transaction->No = $data->TransactionNo;
+    $financial_transaction->Transaction_no = $data->Transaction_no;
     $financial_transaction->Date = $data->Date;
+    $financial_transaction->Amount = $data->Amount;
   
     // delete the product
-    if($event->delete()){
+    if($financial_transaction->delete()){
   
         // set response code - 200 ok
         http_response_code(200);

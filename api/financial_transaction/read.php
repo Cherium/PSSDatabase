@@ -3,7 +3,7 @@ header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
 
 include_once '../config/database.php';
-include_once '../objects/events.php';
+include_once '../objects/financial_transaction.php';
 
 $database = new Database();
 $db = $database->getConnection();
@@ -26,7 +26,7 @@ if($num>0){
         extract($row);
   
         $event_single=array(
-            "Transaction_no" => $No,
+            "Transaction_no" => $Transaction_no,
             "Date" => $Date,
             "Amount" => $Amount,
             

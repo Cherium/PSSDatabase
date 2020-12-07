@@ -8,7 +8,7 @@
   
     // include database and object files
     include_once '../config/database.php';
-    include_once '../objects/events.php';
+    include_once '../objects/financial_transaction.php';
   
     // get database connection
     $database = new Database();
@@ -21,14 +21,15 @@
     $data = json_decode(file_get_contents("php://input"));
   
     // set ID property of product to be edited
+
+    $financial_transaction->Transaction_no = $data->Transaction_no;
+    $financial_transaction->Date = $data->Date;
     $financial_transaction->Amount = $data->Amount;
-    $financial_transaction->No = $data->TransactionNo;
-    
   
    
    
     // update the product
-    if($event->update()){
+    if($financial_transaction->update()){
   
         // set response code - 200 ok
         http_response_code(200);

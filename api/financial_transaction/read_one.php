@@ -8,7 +8,7 @@
   
     // include database and object files
     include_once '../config/database.php';
-    include_once '../objects/events.php';
+    include_once '../objects/financial_transaction.php';
   
     // get database connection
     $database = new Database();
@@ -18,8 +18,8 @@
     $financial_transaction = new financial_transaction($db);
   
     // set ID property of record to read
-    $financial_transaction->No = isset($_GET['TransactionNo']) ? $_GET['TransactionNo'] : die();
-    $event->Date = isset($_GET['Date']) ? $_GET['Date'] : die();
+    $financial_transaction->Transaction_no = isset($_GET['TransactionNo']) ? $_GET['TransactionNo'] : die();
+    $financial_transaction->Date = isset($_GET['Date']) ? $_GET['Date'] : die();
 
 
 
@@ -27,11 +27,11 @@
     $financial_transaction->readOne();
   
 
-    if(($financial_transaction->No!=null) && ($financial_transaction->Date!=null)){
+    if(($financial_transaction->Transaction_no!=null) && ($financial_transaction->Date!=null)){
         // create array
         $events_arr = array(
-            "TransactionNo" => $financial_transaction->No,
-            "Date" => $event->Date
+            "Transaction_no" => $financial_transaction->Transaction_no,
+            "Date" => $financial_transaction->Date
             
         );
   

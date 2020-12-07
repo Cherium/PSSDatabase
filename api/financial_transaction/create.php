@@ -10,7 +10,7 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 include_once '../config/database.php';
   
 // instantiate product object
-include_once '../objects/events.php';
+include_once '../objects/financial_transaction.php';
   
 $database = new Database();
 $db = $database->getConnection();
@@ -22,12 +22,12 @@ $data = json_decode(file_get_contents("php://input"));
   
 // make sure data is not empty
 if(
-    !empty($data->Name) &&
+    !empty($data->Transaction_no) &&
     !empty($data->Date) 
 ){
   
     // set product property values
-    $financial_transaction->No = $data->TransactionNo;
+    $financial_transaction->Transaction_no = $data->Transaction_no;
     $financial_transaction->Date = $data->Date;
     $financial_transaction->Amount = $data->Amount;
     
