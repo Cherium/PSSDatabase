@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Contribution API: View all, create and delete
 - Fundraiser API: View all, create and delete
 - Donate API: View all, create and delete
+- Department API: View all, create and update
 
 ### Changed
 - Path and functions in financial_transaction.php
