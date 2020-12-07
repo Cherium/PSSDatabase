@@ -15,19 +15,18 @@
     $db = $database->getConnection();
   
     // prepare product object
-    $event = new Event($db);
+    $financial_transaction = new financial_transaction($db);
   
     // get id of product to be edited
     $data = json_decode(file_get_contents("php://input"));
   
+    // set ID property of product to be edited
+    $financial_transaction->Amount = $data->Amount;
+    $financial_transaction->No = $data->TransactionNo;
     
-    
-    // set product property values
-    $event->Name = $data->Name;
-    $event->Date = $data->Date;
-    $event->Location = $data->Location;
-    $event->FundraiserName = $data->FundraiserName;
   
+   
+   
     // update the product
     if($event->update()){
   
