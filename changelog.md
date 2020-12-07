@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Performance API: View all performances, create, and delete specific performances for an event
 - Artist API: View all artists, create and delete specific artists for a performance
 - Food API: View all food, create and delete specific food for an event
+- Executive API: View all executives, create, and delete an executive
 
 ### Changed
 - Updated database with dummy values for meeting, performance, artist, and food. 
