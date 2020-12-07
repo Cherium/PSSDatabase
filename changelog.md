@@ -13,6 +13,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Artist API: View all artists, create and delete specific artists for a performance
 - Food API: View all food, create and delete specific food for an event
 
+### Changed
+- Updated database with dummy values for meeting, performance, artist, and food. 
+
 ## [0.4.0] - 2020-12-05
 ### Added
 - Member API: View all members, creating a member (without subscription/transaction, these are set default values), view details of specific member, updating a member, deletion of a member (doesn't check if member exists), searching a member by program

@@ -26,11 +26,13 @@ DROP TABLE IF EXISTS `artist`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `artist` (
   `E_name` varchar(255) NOT NULL,
+  `E_date` date NOT NULL,
+  `Type` varchar(45) NOT NULL,
   `F_name` varchar(255) NOT NULL,
   `L_name` varchar(255) DEFAULT NULL,
   `UCID` int DEFAULT NULL,
-  PRIMARY KEY (`E_name`),
-  CONSTRAINT `artist_fk` FOREIGN KEY (`E_name`) REFERENCES `performance` (`E_name`)
+  PRIMARY KEY (`E_name`,`E_date`,`Type`,`F_name`),
+  CONSTRAINT `artist_fk` FOREIGN KEY (`E_name`, `E_date`, `Type`) REFERENCES `performance` (`E_name`, `E_date`, `Type`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -40,6 +42,7 @@ CREATE TABLE `artist` (
 
 LOCK TABLES `artist` WRITE;
 /*!40000 ALTER TABLE `artist` DISABLE KEYS */;
+INSERT INTO `artist` VALUES ('Gala','2020-03-20','Dance','Charles','chalres',11111111),('Gala','2020-03-20','Dance','Dave','chalres',NULL),('Gala','2020-03-20','Singing','Ava',NULL,NULL),('Gala','2020-03-20','Singing','Bob',NULL,NULL);
 /*!40000 ALTER TABLE `artist` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -190,8 +193,7 @@ CREATE TABLE `department` (
   `H_UCID` int DEFAULT NULL,
   PRIMARY KEY (`Name`),
   UNIQUE KEY `Name_UNIQUE` (`Name`),
-  KEY `H_UCID_idx` (`H_UCID`),
-  CONSTRAINT `Head_fk` FOREIGN KEY (`H_UCID`) REFERENCES `executive` (`EUCID`)
+  KEY `Depart_fk_idx` (`H_UCID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -201,6 +203,7 @@ CREATE TABLE `department` (
 
 LOCK TABLES `department` WRITE;
 /*!40000 ALTER TABLE `department` DISABLE KEYS */;
+INSERT INTO `department` VALUES ('Events',61987960),('Finance',76890700),('External',78246420);
 /*!40000 ALTER TABLE `department` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -278,7 +281,7 @@ CREATE TABLE `event` (
 
 LOCK TABLES `event` WRITE;
 /*!40000 ALTER TABLE `event` DISABLE KEYS */;
-INSERT INTO `event` VALUES ('Bake Sale','2020-03-15','Science B','Club Expenses'),('Biryani Meet & Greet','2020-02-10','Science Theatres',NULL),('Clubs Expo','2020-01-01','MacHall',NULL),('Clubs Week','2020-01-20','MacHall',NULL),('Clubs Week Winter','2020-09-15','MacHall',NULL),('Gala','2020-03-20','MacEwan',NULL),('Mehndi Night','2020-03-01','The Empty Space',NULL),('Netflix and Chai','2020-02-21','The Empty Space',NULL),('Netflix and Chai','2020-11-15','The Empty Space',NULL),('Paint Night ','2020-10-10','MacEwan',NULL);
+INSERT INTO `event` VALUES ('Bake Sale','2020-03-15','Science B','Club Expenses'),('Biryani Meet & Greet','2020-02-10','Science Theatres',NULL),('Clubs Expo','2020-01-01','MacHall',NULL),('Clubs Week','2020-01-20','MacHall',NULL),('Clubs Week Winter','2020-09-15','MacHall',NULL),('Gala','2020-03-20','MacEwan',NULL),('Mehndi Night','2020-03-01','The Empty Space',NULL),('Netflix and Chai','2020-02-21','The Empty Space',NULL),('Netflix and Chai','2020-11-15','Math Science','Netflix expenses'),('Paint Night ','2020-10-10','MacEwan',NULL);
 /*!40000 ALTER TABLE `event` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -306,6 +309,7 @@ CREATE TABLE `executive` (
 
 LOCK TABLES `executive` WRITE;
 /*!40000 ALTER TABLE `executive` DISABLE KEYS */;
+INSERT INTO `executive` VALUES (61987960,'2020-01-01','Events'),(76890700,'2020-01-01','Finance'),(78246420,'2020-01-01','External');
 /*!40000 ALTER TABLE `executive` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -344,9 +348,10 @@ DROP TABLE IF EXISTS `food`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `food` (
   `E_name` varchar(255) NOT NULL,
+  `E_date` date NOT NULL,
   `Food` varchar(255) NOT NULL,
-  PRIMARY KEY (`E_name`,`Food`),
-  CONSTRAINT `Food_fk` FOREIGN KEY (`E_name`) REFERENCES `event` (`Name`)
+  PRIMARY KEY (`E_name`,`E_date`,`Food`),
+  CONSTRAINT `Food_fk` FOREIGN KEY (`E_name`, `E_date`) REFERENCES `event` (`Name`, `Date`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -356,6 +361,7 @@ CREATE TABLE `food` (
 
 LOCK TABLES `food` WRITE;
 /*!40000 ALTER TABLE `food` DISABLE KEYS */;
+INSERT INTO `food` VALUES ('Gala','2020-03-20','Gold fish crackers'),('Gala','2020-03-20','Oreos');
 /*!40000 ALTER TABLE `food` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -447,10 +453,10 @@ DROP TABLE IF EXISTS `meeting`;
 CREATE TABLE `meeting` (
   `Date` date NOT NULL,
   `Summary` longtext NOT NULL,
-  `Name` varchar(45) DEFAULT NULL,
+  `Department` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`Date`),
-  KEY `Department_fk_idx` (`Name`),
-  CONSTRAINT `Meeting_fk` FOREIGN KEY (`Name`) REFERENCES `department` (`Name`)
+  KEY `Department_fk_idx` (`Department`),
+  CONSTRAINT `Meeting_fk` FOREIGN KEY (`Department`) REFERENCES `department` (`Name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -460,6 +466,7 @@ CREATE TABLE `meeting` (
 
 LOCK TABLES `meeting` WRITE;
 /*!40000 ALTER TABLE `meeting` DISABLE KEYS */;
+INSERT INTO `meeting` VALUES ('2020-08-10','Expenses.txt','Finance'),('2020-09-10','MonthlyExpense.txt','Finance'),('2020-10-10','ClubExpo.txt','Events'),('2020-10-11','MonthlyExpense.txt','Finance'),('2020-11-10','MonthlyExpense.txt','Finance');
 /*!40000 ALTER TABLE `meeting` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -472,11 +479,11 @@ DROP TABLE IF EXISTS `member`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `member` (
   `UCID` int NOT NULL,
-  `Internation_status` tinyint NOT NULL DEFAULT '0',
+  `Int_stat` tinyint DEFAULT '0',
   `Fname` varchar(255) NOT NULL,
   `Lname` varchar(255) NOT NULL,
   `Email` varchar(45) NOT NULL,
-  `Year_of_study` varchar(1) NOT NULL,
+  `Year_of_study` varchar(1) DEFAULT NULL,
   `Program` varchar(255) DEFAULT NULL,
   `Subscription_status` tinyint DEFAULT '1',
   `Transaction_no` int DEFAULT NULL,
@@ -625,10 +632,10 @@ DROP TABLE IF EXISTS `performance`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `performance` (
   `E_name` varchar(255) NOT NULL,
-  `E_date` varchar(255) NOT NULL,
-  `Type` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`E_name`,`E_date`),
-  CONSTRAINT `Peformance_fk` FOREIGN KEY (`E_name`) REFERENCES `event` (`Name`)
+  `E_date` date NOT NULL,
+  `Type` varchar(255) NOT NULL,
+  PRIMARY KEY (`E_name`,`E_date`,`Type`),
+  CONSTRAINT `Performance_fk` FOREIGN KEY (`E_name`, `E_date`) REFERENCES `event` (`Name`, `Date`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -638,6 +645,7 @@ CREATE TABLE `performance` (
 
 LOCK TABLES `performance` WRITE;
 /*!40000 ALTER TABLE `performance` DISABLE KEYS */;
+INSERT INTO `performance` VALUES ('Gala','2020-03-20','Dance'),('Gala','2020-03-20','Singing'),('Paint Night ','2020-10-10','TestTest3');
 /*!40000 ALTER TABLE `performance` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -749,4 +757,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-12-02 21:24:02
+-- Dump completed on 2020-12-06 18:16:52
