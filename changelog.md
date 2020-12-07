@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Meeting API: Creating a meeting, viewing a specific meeting, updating a meeting's info, deleting a meeting, search through meetings 
 - Performance API: View all performances, create, and delete specific performances
+- Artist API: View all artists, create and delete specific artists
 
 ## [0.4.0] - 2020-12-05
 ### Added
