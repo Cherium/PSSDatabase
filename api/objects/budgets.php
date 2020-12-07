@@ -4,6 +4,7 @@ class Budget{
 	private $table_name = "budget";
 
 	public $Name;
+    public $Date;
 	public $Transaction_no;
 	public $Food;
 	public $Rent;
@@ -19,9 +20,9 @@ class Budget{
         // select all query
         $query = "SELECT *
                 FROM
-                    " . $this->table_name . " e
+                    " . $this->table_name . " b
                 ORDER BY
-                    e.Date DESC";
+                    b.Date DESC";
   
         // prepare query statement
         $stmt = $this->conn->prepare($query);
@@ -38,7 +39,7 @@ class Budget{
         $query = "INSERT INTO
                     " . $this->table_name . "
                 SET
-                    Name=:Name, Date=:Date, Location=:Location, FundraiserName=:FundraiserName";
+                    Name=:Name, Date=:Date, Transaction_no=:Transaction_no, Food=:Food, Rent=:Rent, Decoration=:Decoration, Performer=:Performer, Other=:Other";
   
         // prepare query
         $stmt = $this->conn->prepare($query);
@@ -46,14 +47,22 @@ class Budget{
         // sanitize
         $this->Name=htmlspecialchars(strip_tags($this->Name));
         $this->Date=htmlspecialchars(strip_tags($this->Date));
-        $this->Location=htmlspecialchars(strip_tags($this->Location));
-        $this->FundraiserName=htmlspecialchars(strip_tags($this->FundraiserName));
+        $this->Transaction_no=htmlspecialchars(strip_tags($this->Transaction_no));
+        $this->Food=htmlspecialchars(strip_tags($this->Food));
+        $this->Rent=htmlspecialchars(strip_tags($this->Rent));
+        $this->Decoration=htmlspecialchars(strip_tags($this->Decoration));
+        $this->Performer=htmlspecialchars(strip_tags($this->Performer));
+        $this->Other=htmlspecialchars(strip_tags($this->Other));
   
         // bind values
         $stmt->bindParam(":Name", $this->Name);
         $stmt->bindParam(":Date", $this->Date);
-        $stmt->bindParam(":Location", $this->Location);
-        $stmt->bindParam(":FundraiserName", $this->FundraiserName);
+        $stmt->bindParam(":Transaction_no", $this->Transaction_no);
+        $stmt->bindParam(":Food", $this->Food);
+        $stmt->bindParam(":Rent", $this->Rent);
+        $stmt->bindParam(":Decoration", $this->Decoration);
+        $stmt->bindParam(":Performer", $this->Performer);
+        $stmt->bindParam(":Other", $this->Other);
 
   
         // execute query
@@ -65,44 +74,6 @@ class Budget{
       
     }
 
-    // used when filling up the update product form
-    function readOne(){
-  
-
-
-        // query to read single record
-        $query = "SELECT *                   
-                FROM
-                    " . $this->table_name . " e
-                WHERE
-                    e.Name = " . $this->Name . " AND e.Date = " . $this->Date . " 
-                LIMIT
-                    0,1";
-  
-        // prepare query statement
-        $stmt = $this->conn->prepare( $query );
-
-
-        // bind id of product to be updated
-        $stmt->bindParam(1, $this->Name);
-        $stmt->bindParam(2, $this->Date);
-
-     
-
-  
-        // execute query
-        $stmt->execute();
-  
-        // get retrieved row
-        $row = $stmt->fetch(PDO::FETCH_ASSOC);
-  
-        // set values to object properties
-        $this->Name = $row['Name'];
-        $this->Date = $row['Date'];
-        $this->Location = $row['Location'];
-        $this->FundraiserName = $row['FundraiserName'];
-
-    }
 
     function update(){
   
@@ -110,7 +81,7 @@ class Budget{
         $query = "UPDATE
                     " . $this->table_name . "
                 SET
-                    Location=:Location, FundraiserName=:FundraiserName
+                    Food=:Food, Rent=:Rent, Decoration=:Decoration, Performer=:Performer, Other=:Other
                 WHERE
                     Name=:Name AND Date=:Date";
   
@@ -120,15 +91,23 @@ class Budget{
         // sanitize
         $this->Name=htmlspecialchars(strip_tags($this->Name));
         $this->Date=htmlspecialchars(strip_tags($this->Date));
-        $this->Location=htmlspecialchars(strip_tags($this->Location));
-        $this->FundraiserName=htmlspecialchars(strip_tags($this->FundraiserName));
+        $this->Transaction_no=htmlspecialchars(strip_tags($this->Transaction_no));
+        $this->Food=htmlspecialchars(strip_tags($this->Food));
+        $this->Rent=htmlspecialchars(strip_tags($this->Rent));
+        $this->Decoration=htmlspecialchars(strip_tags($this->Decoration));
+        $this->Performer=htmlspecialchars(strip_tags($this->Performer));
+        $this->Other=htmlspecialchars(strip_tags($this->Other));
 
   
         // bind new values
         $stmt->bindParam(':Name', $this->Name);
         $stmt->bindParam(':Date', $this->Date);
-        $stmt->bindParam(':Location', $this->Location);
-        $stmt->bindParam(':FundraiserName', $this->FundraiserName);
+        //$stmt->bindParam(':Transaction_no', $this->Transaction_no);
+        $stmt->bindParam(':Food', $this->Food);
+        $stmt->bindParam(':Rent', $this->Rent);
+        $stmt->bindParam(':Decoration', $this->Decoration);
+        $stmt->bindParam(':Performer', $this->Performer);
+        $stmt->bindParam(':Other', $this->Other);
 
   
         // execute the query
@@ -144,7 +123,7 @@ class Budget{
   
         // delete query
         $query = "DELETE FROM " . $this->table_name . " 
-                WHERE Name = ? AND Date = ?" ;
+                WHERE Name = ? AND Date = ? AND Transaction_no = ?" ;
   
         // prepare query
         $stmt = $this->conn->prepare($query);
@@ -152,13 +131,13 @@ class Budget{
         // sanitize
         $this->Name=htmlspecialchars(strip_tags($this->Name));
         $this->Date=htmlspecialchars(strip_tags($this->Date));
+        $this->Transaction_no=htmlspecialchars(strip_tags($this->Transaction_no));
   
         // bind id of record to delete
         $stmt->bindParam(1, $this->Name);
         $stmt->bindParam(2, $this->Date);
+        $stmt->bindParam(3, $this->Transaction_no);
 
-        echo $this->Name;
-        echo $this->Date;
   
         // execute query
         if($stmt->execute()){
