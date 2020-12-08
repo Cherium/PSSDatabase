@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.7.0] - 2020-12-08
+### Added
+- Author in API: View all, create and delete
+- Cover in API: View all, create and delete
+
 ## [0.6.0] - 2020-12-07
 ### Added
 - Incoming API: View all incoming transactions, creating and deleting incoming transactions, updating package type of an existing incoming
@@ -20,7 +25,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Joined in API: View all, create and delete
 - Membership payment in API: View all, create and delete
 - Monthly email in API: View all, create and delete
-- Author in API: View all, create and delete
 
 ### Changed
 - Path and functions in financial_transaction.php
