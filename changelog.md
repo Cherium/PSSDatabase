@@ -20,6 +20,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Joined in API: View all, create and delete
 - Membership payment in API: View all, create and delete
 - Monthly email in API: View all, create and delete
+- Author in API: View all, create and delete
 
 ### Changed
 - Path and functions in financial_transaction.php
