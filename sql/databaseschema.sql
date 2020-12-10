@@ -47,29 +47,30 @@ INSERT INTO `artist` VALUES ('Gala','2020-03-20','Dance','Charles','chalres',111
 UNLOCK TABLES;
 
 --
--- Table structure for table `attendance`
+-- Table structure for table `attendence`
 --
 
-DROP TABLE IF EXISTS `attendance`;
+DROP TABLE IF EXISTS `attendence`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `attendance` (
+CREATE TABLE `attendence` (
   `Date` date NOT NULL,
   `UCID` int NOT NULL,
   PRIMARY KEY (`Date`,`UCID`),
   KEY `Attendance_ucid_fk_idx` (`UCID`),
-  CONSTRAINT `Attendance_date_fk` FOREIGN KEY (`Date`) REFERENCES `meeting` (`Date`),
-  CONSTRAINT `Attendance_ucid_fk` FOREIGN KEY (`UCID`) REFERENCES `executive` (`EUCID`)
+  CONSTRAINT `Attendance_ucid_fk` FOREIGN KEY (`UCID`) REFERENCES `executive` (`EUCID`),
+  CONSTRAINT `Attendence_meet_fk` FOREIGN KEY (`Date`) REFERENCES `meeting` (`Date`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `attendance`
+-- Dumping data for table `attendence`
 --
 
-LOCK TABLES `attendance` WRITE;
-/*!40000 ALTER TABLE `attendance` DISABLE KEYS */;
-/*!40000 ALTER TABLE `attendance` ENABLE KEYS */;
+LOCK TABLES `attendence` WRITE;
+/*!40000 ALTER TABLE `attendence` DISABLE KEYS */;
+INSERT INTO `attendence` VALUES ('2020-11-10',76890700),('2020-11-10',78246420);
+/*!40000 ALTER TABLE `attendence` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -95,6 +96,7 @@ CREATE TABLE `author` (
 
 LOCK TABLES `author` WRITE;
 /*!40000 ALTER TABLE `author` DISABLE KEYS */;
+INSERT INTO `author` VALUES (78246420,'2020-02-02');
 /*!40000 ALTER TABLE `author` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -107,15 +109,16 @@ DROP TABLE IF EXISTS `budget`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `budget` (
   `Name` varchar(255) NOT NULL,
+  `Date` date NOT NULL,
   `Transaction_no` int NOT NULL,
   `Food` int DEFAULT NULL,
   `Rent` int DEFAULT NULL,
   `Decoration` int DEFAULT NULL,
-  `Peformer` int DEFAULT NULL,
+  `Performer` int DEFAULT NULL,
   `Other` int DEFAULT NULL,
-  PRIMARY KEY (`Name`,`Transaction_no`),
+  PRIMARY KEY (`Name`,`Date`),
   KEY `Budget_no_fk_idx` (`Transaction_no`),
-  CONSTRAINT `Budget_event_fk` FOREIGN KEY (`Name`) REFERENCES `event` (`Name`),
+  CONSTRAINT `Budget_event_fk` FOREIGN KEY (`Name`, `Date`) REFERENCES `event` (`Name`, `Date`),
   CONSTRAINT `Budget_no_fk` FOREIGN KEY (`Transaction_no`) REFERENCES `outgoing` (`Transaction_no`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -126,6 +129,7 @@ CREATE TABLE `budget` (
 
 LOCK TABLES `budget` WRITE;
 /*!40000 ALTER TABLE `budget` DISABLE KEYS */;
+INSERT INTO `budget` VALUES ('Gala','2020-03-20',15,50,100,70,50,0);
 /*!40000 ALTER TABLE `budget` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -138,8 +142,8 @@ DROP TABLE IF EXISTS `contribution`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contribution` (
   `Name` varchar(255) NOT NULL,
-  `Transaction_no` int DEFAULT NULL,
-  PRIMARY KEY (`Name`),
+  `Transaction_no` int NOT NULL,
+  PRIMARY KEY (`Name`,`Transaction_no`),
   KEY `Contribution_no_fk_idx` (`Transaction_no`),
   CONSTRAINT `Contribution_fk` FOREIGN KEY (`Name`) REFERENCES `organization` (`Name`),
   CONSTRAINT `Contribution_no_fk` FOREIGN KEY (`Transaction_no`) REFERENCES `outgoing` (`Transaction_no`)
@@ -152,6 +156,7 @@ CREATE TABLE `contribution` (
 
 LOCK TABLES `contribution` WRITE;
 /*!40000 ALTER TABLE `contribution` DISABLE KEYS */;
+INSERT INTO `contribution` VALUES ('Student Union',17);
 /*!40000 ALTER TABLE `contribution` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -164,11 +169,12 @@ DROP TABLE IF EXISTS `cover`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cover` (
   `Name` varchar(255) NOT NULL,
+  `E_date` date NOT NULL,
   `Date` date NOT NULL,
-  PRIMARY KEY (`Name`,`Date`),
+  PRIMARY KEY (`Name`,`E_date`,`Date`),
   KEY `Cover_date_fk_idx` (`Date`),
   CONSTRAINT `Cover_date_fk` FOREIGN KEY (`Date`) REFERENCES `monthly_email` (`Date`),
-  CONSTRAINT `Cover_event_fk` FOREIGN KEY (`Name`) REFERENCES `event` (`Name`)
+  CONSTRAINT `Cover_event_fk` FOREIGN KEY (`Name`, `E_date`) REFERENCES `event` (`Name`, `Date`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -178,6 +184,7 @@ CREATE TABLE `cover` (
 
 LOCK TABLES `cover` WRITE;
 /*!40000 ALTER TABLE `cover` DISABLE KEYS */;
+INSERT INTO `cover` VALUES ('Clubs Week Winter','2020-09-15','2020-02-02');
 /*!40000 ALTER TABLE `cover` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -203,7 +210,7 @@ CREATE TABLE `department` (
 
 LOCK TABLES `department` WRITE;
 /*!40000 ALTER TABLE `department` DISABLE KEYS */;
-INSERT INTO `department` VALUES ('Events',61987960),('Finance',76890700),('External',78246420);
+INSERT INTO `department` VALUES ('Test',11111111),('Test2',22222222),('Events',61987960),('Finance',76890700),('External',78246420);
 /*!40000 ALTER TABLE `department` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -242,10 +249,11 @@ DROP TABLE IF EXISTS `e_host`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `e_host` (
   `Name` varchar(255) NOT NULL,
+  `Date` date NOT NULL,
   `UCID` int NOT NULL,
-  PRIMARY KEY (`Name`,`UCID`),
+  PRIMARY KEY (`Name`,`Date`),
   KEY `E_ucid_fk_idx` (`UCID`),
-  CONSTRAINT `E_event_fk` FOREIGN KEY (`Name`) REFERENCES `event` (`Name`),
+  CONSTRAINT `E_event_fk` FOREIGN KEY (`Name`, `Date`) REFERENCES `event` (`Name`, `Date`),
   CONSTRAINT `E_ucid_fk` FOREIGN KEY (`UCID`) REFERENCES `executive` (`EUCID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -256,6 +264,7 @@ CREATE TABLE `e_host` (
 
 LOCK TABLES `e_host` WRITE;
 /*!40000 ALTER TABLE `e_host` DISABLE KEYS */;
+INSERT INTO `e_host` VALUES ('Netflix and Chai','2020-11-15',61987960),('Paint Night ','2020-10-10',61987960);
 /*!40000 ALTER TABLE `e_host` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -335,7 +344,7 @@ CREATE TABLE `financial_transaction` (
 
 LOCK TABLES `financial_transaction` WRITE;
 /*!40000 ALTER TABLE `financial_transaction` DISABLE KEYS */;
-INSERT INTO `financial_transaction` VALUES (1,'2020-01-01',5),(2,'2020-01-01',5),(3,'2020-01-01',5),(4,'2020-01-01',5),(5,'2020-01-01',5),(6,'2020-01-01',5),(7,'2020-01-01',5),(8,'2020-01-01',5),(9,'2020-01-01',5),(10,'2020-01-01',5),(11,'2020-01-01',5),(12,'2020-01-01',5),(13,'2020-01-01',5),(14,'2020-01-01',5);
+INSERT INTO `financial_transaction` VALUES (1,'2020-01-01',1111),(2,'2020-01-01',5),(3,'2020-01-01',5),(4,'2020-01-01',5),(5,'2020-01-01',5),(6,'2020-01-01',5),(7,'2020-01-01',5),(8,'2020-01-01',5),(9,'2020-01-01',5),(10,'2020-01-01',5),(11,'2020-01-01',5),(12,'2020-01-01',5),(13,'2020-01-01',5),(14,'2020-01-01',5),(15,'2020-01-01',5),(16,'2022-02-02',23),(17,'2022-02-02',23),(18,'2022-02-02',23),(19,'2022-02-02',23),(20,'1999-01-01',1000);
 /*!40000 ALTER TABLE `financial_transaction` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -361,7 +370,7 @@ CREATE TABLE `food` (
 
 LOCK TABLES `food` WRITE;
 /*!40000 ALTER TABLE `food` DISABLE KEYS */;
-INSERT INTO `food` VALUES ('Gala','2020-03-20','Gold fish crackers'),('Gala','2020-03-20','Oreos');
+INSERT INTO `food` VALUES ('Gala','2020-03-20','Biryani'),('Gala','2020-03-20','Gold fish crackers'),('Gala','2020-03-20','Oreos');
 /*!40000 ALTER TABLE `food` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -386,6 +395,7 @@ CREATE TABLE `fundraiser` (
 
 LOCK TABLES `fundraiser` WRITE;
 /*!40000 ALTER TABLE `fundraiser` DISABLE KEYS */;
+INSERT INTO `fundraiser` VALUES (1,'Club Fundraiser'),(2,'Expo');
 /*!40000 ALTER TABLE `fundraiser` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -411,7 +421,7 @@ CREATE TABLE `incoming` (
 
 LOCK TABLES `incoming` WRITE;
 /*!40000 ALTER TABLE `incoming` DISABLE KEYS */;
-INSERT INTO `incoming` VALUES (1,'Membership payment'),(2,'Membership payment'),(3,'Membership payment'),(4,'Membership payment'),(5,'Membership payment'),(6,'Membership payment'),(7,'Membership payment'),(8,'Membership payment'),(9,'Membership payment'),(10,'Membership payment'),(11,'Membership payment'),(12,'Membership payment'),(13,'Membership payment'),(14,'Membership payment');
+INSERT INTO `incoming` VALUES (1,'New Member'),(2,'Membership payment'),(3,'Membership payment'),(4,'Membership payment'),(5,'Membership payment'),(6,'Membership payment'),(7,'Membership payment'),(8,'Membership payment'),(9,'Membership payment'),(10,'Membership payment'),(11,'Membership payment'),(12,'Membership payment'),(13,'Membership payment'),(14,'Membership payment'),(20,'Tier 1');
 /*!40000 ALTER TABLE `incoming` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -466,7 +476,7 @@ CREATE TABLE `meeting` (
 
 LOCK TABLES `meeting` WRITE;
 /*!40000 ALTER TABLE `meeting` DISABLE KEYS */;
-INSERT INTO `meeting` VALUES ('2020-08-10','Expenses.txt','Finance'),('2020-09-10','MonthlyExpense.txt','Finance'),('2020-10-10','ClubExpo.txt','Events'),('2020-10-11','MonthlyExpense.txt','Finance'),('2020-11-10','MonthlyExpense.txt','Finance');
+INSERT INTO `meeting` VALUES ('2020-01-10','Budget guidelines','Test'),('2020-08-10','Expenses.txt','Finance'),('2020-09-10','MonthlyExpense.txt','Finance'),('2020-10-10','ClubExpo.txt','Events'),('2020-10-11','MonthlyExpense.txt','Finance'),('2020-11-10','Monthly.txt','Finance');
 /*!40000 ALTER TABLE `meeting` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -547,6 +557,7 @@ CREATE TABLE `monthly_email` (
 
 LOCK TABLES `monthly_email` WRITE;
 /*!40000 ALTER TABLE `monthly_email` DISABLE KEYS */;
+INSERT INTO `monthly_email` VALUES ('2020-02-02');
 /*!40000 ALTER TABLE `monthly_email` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -573,6 +584,7 @@ CREATE TABLE `notify` (
 
 LOCK TABLES `notify` WRITE;
 /*!40000 ALTER TABLE `notify` DISABLE KEYS */;
+INSERT INTO `notify` VALUES (61987960,'2020-02-02');
 /*!40000 ALTER TABLE `notify` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -585,6 +597,7 @@ DROP TABLE IF EXISTS `organization`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `organization` (
   `Name` varchar(255) NOT NULL,
+  `Contact` varchar(255) NOT NULL,
   PRIMARY KEY (`Name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -595,6 +608,7 @@ CREATE TABLE `organization` (
 
 LOCK TABLES `organization` WRITE;
 /*!40000 ALTER TABLE `organization` DISABLE KEYS */;
+INSERT INTO `organization` VALUES ('An organized organization','org@org.org'),('Student Union','su@ucalgary.ca');
 /*!40000 ALTER TABLE `organization` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -620,6 +634,7 @@ CREATE TABLE `outgoing` (
 
 LOCK TABLES `outgoing` WRITE;
 /*!40000 ALTER TABLE `outgoing` DISABLE KEYS */;
+INSERT INTO `outgoing` VALUES (15,'Food Budget'),(16,'Delete me'),(17,'Union Fees'),(18,'Event budget');
 /*!40000 ALTER TABLE `outgoing` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -669,6 +684,7 @@ CREATE TABLE `president` (
 
 LOCK TABLES `president` WRITE;
 /*!40000 ALTER TABLE `president` DISABLE KEYS */;
+INSERT INTO `president` VALUES (11110000,'2019-09-18'),(21210000,'2020-09-18');
 /*!40000 ALTER TABLE `president` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -695,6 +711,7 @@ CREATE TABLE `reimbursement` (
 
 LOCK TABLES `reimbursement` WRITE;
 /*!40000 ALTER TABLE `reimbursement` DISABLE KEYS */;
+INSERT INTO `reimbursement` VALUES (76890700,16);
 /*!40000 ALTER TABLE `reimbursement` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -710,7 +727,7 @@ CREATE TABLE `sponsorship` (
   `Package_type` varchar(255) NOT NULL,
   `Sponsor_name` varchar(255) NOT NULL,
   `Sponsor_package` varchar(255) NOT NULL,
-  UNIQUE KEY `Transaction_no_UNIQUE` (`Transaction_no`),
+  PRIMARY KEY (`Transaction_no`),
   CONSTRAINT `sponsorship_fk` FOREIGN KEY (`Transaction_no`) REFERENCES `incoming` (`Transaction_no`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -721,6 +738,7 @@ CREATE TABLE `sponsorship` (
 
 LOCK TABLES `sponsorship` WRITE;
 /*!40000 ALTER TABLE `sponsorship` DISABLE KEYS */;
+INSERT INTO `sponsorship` VALUES (20,'Tier 1','A Sponsor','Tier 1');
 /*!40000 ALTER TABLE `sponsorship` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -734,7 +752,7 @@ DROP TABLE IF EXISTS `topic`;
 CREATE TABLE `topic` (
   `Date` date NOT NULL,
   `Name` varchar(255) NOT NULL,
-  PRIMARY KEY (`Date`),
+  PRIMARY KEY (`Date`,`Name`),
   CONSTRAINT `Topic_fk` FOREIGN KEY (`Date`) REFERENCES `meeting` (`Date`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -745,6 +763,7 @@ CREATE TABLE `topic` (
 
 LOCK TABLES `topic` WRITE;
 /*!40000 ALTER TABLE `topic` DISABLE KEYS */;
+INSERT INTO `topic` VALUES ('2020-08-10','Monthly expense'),('2020-11-10','Club expense'),('2020-11-10','Event expense'),('2020-11-10','Upcoming events expense');
 /*!40000 ALTER TABLE `topic` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -757,4 +776,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-12-06 18:16:52
+-- Dump completed on 2020-12-08 21:33:51
