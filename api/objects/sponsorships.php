@@ -18,9 +18,9 @@ class Sponsorship{
         // select all query
         $query = "SELECT *
                 FROM
-                    " . $this->table_name . " t
+                    " . $this->table_name . " s
                 ORDER BY
-                    t.Sponsor_name DESC";
+                    s.Sponsor_name DESC";
   
         // prepare query statement
         $stmt = $this->conn->prepare($query);

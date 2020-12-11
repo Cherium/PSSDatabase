@@ -35,7 +35,7 @@
         http_response_code(200);
   
         // tell the user
-        echo json_encode(array("message" => "Event was updated."));
+        echo json_encode(array("message" => "Financial transaction was updated."));
     }
   
     // if unable to update the product, tell the user
@@ -45,6 +45,6 @@
         http_response_code(503);
   
         // tell the user
-        echo json_encode(array("message" => "Unable to update event."));
+        echo json_encode(array("message" => "Unable to update financial transaction."));
     }
 ?>

@@ -16,9 +16,9 @@ class Reimbursement{
         // select all query
         $query = "SELECT *
                 FROM
-                    " . $this->table_name . " t
+                    " . $this->table_name . " r
                 ORDER BY
-                    t.Transaction_no DESC";
+                    r.Transaction_no DESC";
   
         // prepare query statement
         $stmt = $this->conn->prepare($query);

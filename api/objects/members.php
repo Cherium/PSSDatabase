@@ -39,15 +39,13 @@ class Member{
     function create(){
         
         // query to insert record
-        // TODO: insert into joined_in table as well
-        // maybe as a different php file
         // Subscription and transaction status are going to be options in update instead of create
         $query = "INSERT INTO
                     " . $this->table_name . "
                 SET
                     UCID=:UCID, Int_stat=:Int_stat, Fname=:Fname, Lname=:Lname, Email=:Email, Year_of_study=:Year_of_study, Program=:Program";
       
-        echo "???";
+        //echo "???";
         // prepare query
         $stmt = $this->conn->prepare($query);
 

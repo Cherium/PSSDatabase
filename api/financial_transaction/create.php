@@ -40,7 +40,7 @@ if(
         http_response_code(201);
   
         // tell the user
-        echo json_encode(array("message" => "Event was created."));
+        echo json_encode(array("message" => "Financial transaction was created."));
     }
   
     // if unable to create the product, tell the user
@@ -50,7 +50,7 @@ if(
         http_response_code(503);
   
         // tell the user
-        echo json_encode(array("message" => "Unable to create event."));
+        echo json_encode(array("message" => "Unable to create financial transaction."));
     }
 }
   
@@ -61,6 +61,6 @@ else{
     http_response_code(400);
   
     // tell the user
-    echo json_encode(array("message" => "Unable to create event. Data is incomplete."));
+    echo json_encode(array("message" => "Unable to create financial transaction. Data is incomplete."));
 }
 ?>

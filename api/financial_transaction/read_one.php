@@ -31,7 +31,8 @@
         // create array
         $events_arr = array(
             "Transaction_no" => $financial_transaction->Transaction_no,
-            "Date" => $financial_transaction->Date
+            "Date" => $financial_transaction->Date,
+            "Amount" =>$financial_transaction->Amount
             
         );
   
@@ -47,6 +48,6 @@
         http_response_code(404);
   
         // tell the user product does not exist
-        echo json_encode(array("message" => "Event does not exist."));
+        echo json_encode(array("message" => "Financial transaction does not exist."));
     }
 ?>

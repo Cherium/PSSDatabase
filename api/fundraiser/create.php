@@ -50,7 +50,7 @@ if(
         http_response_code(503);
   
         // tell the user
-        echo json_encode(array("message" => "Unable to create fundraiser. Choose a unique fundraiser for the event or check that event is entered correctly."));
+        echo json_encode(array("message" => "Unable to create fundraiser. Check transaction number is valid."));
     }
 }
   

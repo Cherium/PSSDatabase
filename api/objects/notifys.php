@@ -14,9 +14,9 @@ class Notify{
         // select all query
         $query = "SELECT *
                 FROM
-                    " . $this->table_name . " e
+                    " . $this->table_name . " n
                 ORDER BY
-                    e.Date DESC";
+                    n.Date DESC";
   
         // prepare query statement
         $stmt = $this->conn->prepare($query);

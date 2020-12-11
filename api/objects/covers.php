@@ -15,9 +15,9 @@ class Cover{
         // select all query
         $query = "SELECT *
                 FROM
-                    " . $this->table_name . " e
+                    " . $this->table_name . " c
                 ORDER BY
-                    e.Date DESC";
+                    c.Date DESC";
   
         // prepare query statement
         $stmt = $this->conn->prepare($query);

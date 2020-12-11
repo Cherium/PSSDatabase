@@ -102,11 +102,11 @@ class Performance{
         // select all query
         $query = "SELECT *
                 FROM
-                    " . $this->table_name . " e
+                    " . $this->table_name . " p
                 WHERE
-                    e.Name LIKE ? OR e.Location LIKE ? OR e.FundraiserName LIKE ?
+                    p.Name LIKE ? OR p.Location LIKE ? OR p.FundraiserName LIKE ?
                 ORDER BY
-                    e.Date DESC";
+                    p.Date DESC";
   
         // prepare query statement
         $stmt = $this->conn->prepare($query);

@@ -53,7 +53,7 @@ if(
         http_response_code(503);
   
         // tell the user
-        echo json_encode(array("message" => "Unable to create joined_in. Choose a unique joined_in for the event or check that event is entered correctly."));
+        echo json_encode(array("message" => "Unable to create joined_in. Check input data."));
     }
 }
   

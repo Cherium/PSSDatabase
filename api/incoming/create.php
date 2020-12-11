@@ -49,7 +49,7 @@ if(
         http_response_code(503);
   
         // tell the user
-        echo json_encode(array("message" => "Unable to create incoming. The same incoming may be performing at the same event or data is inaccuracte."));
+        echo json_encode(array("message" => "Unable to create incoming transaction. Check your inout."));
     }
 }
   

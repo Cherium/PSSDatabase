@@ -34,7 +34,7 @@
         http_response_code(200);
   
         // tell the user
-        echo json_encode(array("message" => "Incoming was updated."));
+        echo json_encode(array("message" => "Incoming transcation was updated."));
     }
   
     // if unable to update the product, tell the user
@@ -44,6 +44,6 @@
         http_response_code(503);
   
         // tell the user
-        echo json_encode(array("message" => "Unable to update incoming."));
+        echo json_encode(array("message" => "Unable to update incoming transaction."));
     }
 ?>

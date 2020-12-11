@@ -18,9 +18,9 @@ class Joined_in{
         // select all query
         $query = "SELECT *
                 FROM
-                    " . $this->table_name . " e
+                    " . $this->table_name . " j
                 ORDER BY
-                    e.E_date DESC";
+                    j.E_date DESC";
   
         // prepare query statement
         $stmt = $this->conn->prepare($query);

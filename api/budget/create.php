@@ -56,7 +56,7 @@ if(
         http_response_code(503);
   
         // tell the user
-        echo json_encode(array("message" => "Unable to create budget. The same budget may be performing at the same event or data is inaccuracte."));
+        echo json_encode(array("message" => "Unable to create budget. Check that event for budget exists."));
     }
 }
   

@@ -17,9 +17,9 @@ class Department{
         // select all query
         $query = "SELECT *
                 FROM
-                    " . $this->table_name . " a
+                    " . $this->table_name . " d
                 ORDER BY
-                    a.Name ASC";
+                    d.Name ASC";
   
         // prepare query statement
         $stmt = $this->conn->prepare($query);
@@ -65,7 +65,7 @@ class Department{
     function update(){
 
   
-        // delete query
+        // update query
         $query = "UPDATE 
                     " . $this->table_name . " 
                 SET 

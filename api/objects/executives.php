@@ -89,36 +89,5 @@ class Executive{
   
         return false;
     }
-
-        // search products
-    function search($keywords){
-  
-        // select all query
-        $query = "SELECT *
-                FROM
-                    " . $this->table_name . " e
-                WHERE
-                    e.Name LIKE ? OR e.Location LIKE ? OR e.FundraiserName LIKE ?
-                ORDER BY
-                    e.Date DESC";
-  
-        // prepare query statement
-        $stmt = $this->conn->prepare($query);
-  
-        // sanitize
-        $keywords=htmlspecialchars(strip_tags($keywords));
-        $keywords = "%{$keywords}%";
-  
-        // bind
-        $stmt->bindParam(1, $keywords);
-        $stmt->bindParam(2, $keywords);
-        $stmt->bindParam(3, $keywords);
-
-  
-        // execute query
-        $stmt->execute();
-  
-        return $stmt;
-    }
 }
 ?>

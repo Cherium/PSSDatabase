@@ -15,9 +15,9 @@ class Food{
         // select all query
         $query = "SELECT *
                 FROM
-                    " . $this->table_name . " e
+                    " . $this->table_name . " f
                 ORDER BY
-                    e.E_date DESC";
+                    f.E_date DESC";
   
         // prepare query statement
         $stmt = $this->conn->prepare($query);

@@ -17,7 +17,7 @@ class financial_transaction{
         // select all query
         $query = "SELECT *
                 FROM
-                    " . $this->table_name . " t ";
+                    " . $this->table_name . " f ";
               
   
         // prepare query statement, consider like a datagram packet(Stroring all the information needed to execute a certain query)
@@ -69,9 +69,9 @@ class financial_transaction{
         // query to read single record
         $query = "SELECT *                   
                 FROM
-                    " . $this->table_name . " t
+                    " . $this->table_name . " f
                 WHERE
-                    t.Transaction_no = " . $this->Transaction_no . " AND t.Date = " . $this->Date . "
+                    f.Transaction_no = " . $this->Transaction_no . " AND f.Date = " . $this->Date . "
                 LIMIT
                     0,1";
   

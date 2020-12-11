@@ -32,7 +32,7 @@
         http_response_code(200);
   
         // tell the user
-        echo json_encode(array("message" => "Incoming was deleted."));
+        echo json_encode(array("message" => "Incoming transaction was deleted."));
     }
   
     // if unable to delete the product
@@ -42,6 +42,6 @@
         http_response_code(503);
   
         // tell the user
-        echo json_encode(array("message" => "Unable to delete incoming."));
+        echo json_encode(array("message" => "Unable to delete incoming transaction."));
     }
 ?>

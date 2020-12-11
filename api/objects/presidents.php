@@ -16,9 +16,9 @@ class President{
         // select all query
         $query = "SELECT *
                 FROM
-                    " . $this->table_name . " t
+                    " . $this->table_name . " p
                 ORDER BY
-                    t.Date_elected DESC";
+                    p.Date_elected DESC";
   
         // prepare query statement
         $stmt = $this->conn->prepare($query);

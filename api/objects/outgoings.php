@@ -15,9 +15,9 @@ class Outgoing{
         // select all query
         $query = "SELECT *
                 FROM
-                    " . $this->table_name . " i
+                    " . $this->table_name . " o
                 ORDER BY
-                    i.Transaction_no ASC";
+                    o.Transaction_no ASC";
   
         // prepare query statement
         $stmt = $this->conn->prepare($query);

@@ -15,9 +15,9 @@ class Fundraiser{
         // select all query
         $query = "SELECT *
                 FROM
-                    " . $this->table_name . " d
+                    " . $this->table_name . " f
                 ORDER BY
-                    d.Transaction_no ASC";
+                    f.Transaction_no ASC";
   
         // prepare query statement
         $stmt = $this->conn->prepare($query);
